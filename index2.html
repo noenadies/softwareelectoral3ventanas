@@ -1767,9 +1767,9 @@ setval("idlng");
 function listo(){
 //	getvalores();
 	setTimeout(function(){
-    window.location.reload();
+  //  window.location.reload();
 	limpia();
-},200);
+},100);
 }
 
 
@@ -1908,10 +1908,11 @@ function funallamadalnodovo(nodo){
   //  vunallamdaalnodovo=[];
     vunallamdaalnodovo=snapshot.val();
     bollvo=true;
-//console.log("viene de  fire una llamada alnodo vo ");   
-// console.log(vunallamdaalnodovo);
 
- funallamadalnodopl("plazaslatlng");
+
+
+
+ funallamadalnodopl("plazaslatlng");//estoy
 }, function (errorObject) {
  // console.log("The read failed: " + errorObject.code);
 });
@@ -1927,6 +1928,7 @@ function funallamadalnodote(nodo){
 
  funallamadalnodovo("votantes");
  
+ 
 }, function (errorObject) {
  // console.log("The read failed: " + errorObject.code);
 });
@@ -1939,7 +1941,7 @@ function funallamadalnodopl(nodo){
  //console.log("viene de  fire una llamada alnodo  pl");   
 // console.log(vunallamdaalnodopl);
  fdecadena();
- 
+
  
  // console.log(321);
 
@@ -1956,7 +1958,9 @@ var intcedula=1;
 
 var bolyacedula=false;
 
-var nobooexisteplaza=false;var boolsilatylng=false;
+var nobooexisteplaza=false;
+
+var boolsilatylng=false;
 
 var boolsicedula=false;
 var boolsinombre=false;
@@ -1964,6 +1968,31 @@ var boolsicelular=false;
 var boolreferido=false;
 
 function fdecadena(){
+  estacedula=false;
+intcedula=1;
+
+
+
+bolyacedula=false;
+
+ nobooexisteplaza=false;
+ boolsilatylng=false;
+
+ boolsicedula=false;
+boolsinombre=false;
+ boolsicelular=false;
+ boolreferido=false;
+
+
+
+
+
+
+
+
+
+
+
 
 
   if(vlng>0){
@@ -1972,13 +2001,16 @@ function fdecadena(){
   else{
    
   }
-
+  objplazalatlng=[];
   if(bollvo&&bollpl&&bollte){
 
     persona={nombre:nombre,cedula:cedula,departamento:dep,municipio:muni,puesto:puest,
     direccion:direcci,mesa:mesa,fechainsc:fecha, referido:referido,movil:String(celular),email:email,facebook:faces,
     referido:referido,idreferido:idref,notauser:ntusuario,notareferido:ntreferido,lat:vlat,lng:vlng};
-  
+    objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest};
+   // console.log("ya");
+   // console.log(objplazalatlng);
+
     stringmensajes="";
 
 
@@ -1988,7 +2020,7 @@ for(var i  in vunallamdaalnodote){
 if(vunallamdaalnodote[i]==celular){ stringmensajes= stringmensajes+"existe un telefono asi "}
 else{   
   if(vunallamdaalnodote[i]==""){}
-  else{    if(celular.length==10){         objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}
+  else{    if(celular.length==10){       //  objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}
 
 vunallamdaalnodote=[];} else{stringmensajes=stringmensajes+"<br> "+"ese no es un numero de celular"}
 
@@ -2001,8 +2033,7 @@ vunallamdaalnodote=[];} else{stringmensajes=stringmensajes+"<br> "+"ese no es un
 
 }
 
-//console.log(" es vunallamdaalnodovo");
-//console.log(cedula);
+
  estacedula=false;
 
 for(var i in vunallamdaalnodovo){
@@ -2017,7 +2048,7 @@ for(var i in vunallamdaalnodovo){
 
 
   if(vunallamdaalnodovo[i].cedula!==cedula&&!estacedula){
-    objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}
+ //   objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}
 stringmensajes="Aceptar para subir la informacion"
 bolyacedula=false;
 //console.log("aca  "+cedula+"  " +vunallamdaalnodovo[i].cedula);
@@ -2025,25 +2056,28 @@ bolyacedula=false;
  
 }
 
-/*for(var i  in vunallamdaalnodovo){
-if(vunallamdaalnodovo[i].cedula==""){ stringmensajes=stringmensajes+" <br>"+ "ya  tenenmos esa  cedula registrada "}
-else{   objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}
-stringmensajes="Lea bien atentamente si pulsa aceptar se  subra  la informacion"
-vunallamdaalnodovo=[];
-}
 
-}*/ //Transversal 78 C No. 6 D - 49
 direcci=String(direcci);
+
 for(var i  in vunallamdaalnodopl){
 if(vunallamdaalnodopl[i].direccion==direcci){
+ // console.log("llamando booexixtemplaza");
 
-  nobooexisteplaza=false;}
-else{ nobooexisteplaza=true;    objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}
+//console.log(booexixtemplaza);
+
+booexixtemplaza=true;  
+ //console.log("nobooexisteplaza "+  booexixtemplaza);
+ 
+ 
+ }
+else{ booexixtemplaza=false;   // objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}
 
 
-
+//console.log("nobooexisteplaza "+  booexixtemplaza);
 
 }
+
+//if(){booexixtemplaza=false}
 
 }
 
@@ -2081,67 +2115,38 @@ document.getElementById("idbtmensajeaceptar").style.display="block";
 if(boolsicelular||boolsicedula||boolsilatylng||boolsinombre||boolreferido){document.getElementById("idbtmensajeaceptar").style.display="none";}
 //else{document.getElementById("idbtmensajeaceptar").style.display="block";}
 escribeidpmensaje(stringmensajes);
-//alert(boolsicelular+"   "+boolsicedula+"  "+boolsilatylng+"   "+boolsinombre+""+ boolreferido);
 
-
-
-/*
-
-
-if(boolsipuedosubir){document.getElementById("idbtmensajeaceptar").style.display="block";}
-else{document.getElementById("idbtmensajeaceptar").style.display="block";}
-escribeidpmensaje(stringmensajes)
-
-
-
-
-}else{ document.getElementById("idbtmensajeaceptar").style.display="none";
-document.getElementById("idmensaje").style.display="block";
-escribeidpmensaje("sin registro ")
-}
-
-if(bolyacedula&&boolsilatylng){document.getElementById("idbtmensajeaceptar").style.display="none";}
-else{document.getElementById("idbtmensajeaceptar").style.display="block";}
-
-}
-*/
   }
 
 
-  estacedula=false;
-intcedula=1;
 
-
-
-bolyacedula=false;
-
- nobooexisteplaza=false;
- boolsilatylng=false;
-
- boolsicedula=false;
-boolsinombre=false;
- boolsicelular=false;
- boolreferido=false;
-
-
-
- bollvo=false;
+  bollvo=false;
  bollpl=false;
  bollte=false;
-
 
 }
 
 
 
 var stringmensajes="";
+var booexixtemplaza=false;
 function elquesubefirebasesivotante(){
   firebase.database().ref().child("telefonos").push(String(celular));
 firebase.database().ref().child("votantes").push(persona);
-if(nobooexisteplaza){firebase.database().ref().child("plazaslatlng").push(objplazalatlng); nobooexisteplaza=false;}
+alert("nobooexisteplaz11 "+ booexixtemplaza);
+console.log("que sube  "+booexixtemplaza);
+if(!booexixtemplaza){  objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}; console.log(objplazalatlng);
+
+
+
+firebase.database().ref().child("plazaslatlng").push( objplazalatlng);
+
+alert("subio");
+}
 
 listo();
 boolsipuedosubir=false;
+booexixtemplaza=true;
 }
 
 function llenaregistro(){//nombre,cedula,dept,muni,puest,direcci,mesa, fecha,referido,emeail,faces,idref){
