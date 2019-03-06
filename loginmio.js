@@ -4,7 +4,6 @@ var todolodeadminfire;
 var vinpnombre;
 var  vpass;
 function inicia(){
-
     var config = {
         apiKey: "AIzaSyBJZNbNmUQekatLuc2NnXUBedh5hzLvRm0",
         authDomain: "electoralempity.firebaseapp.com",
@@ -14,7 +13,6 @@ function inicia(){
         messagingSenderId: "366446292235"
       };
       firebase.initializeApp(config);
-      funatraefireadmi();
 
 }
 
@@ -40,15 +38,15 @@ function funatraefireadmi(){
   }
 
 
-function fbtlogin(){
+function fbtlogin(){alert(777);
  vinpnombre=getv("idinpnombre");
  vpass=String(getv("inppass"));
-console.log(todolodeadminfire);
+console.log(vpass+"  aca");
     for(var i in todolodeadminfire){
 if(todolodeadminfire.nombre==vinpnombre&&todolodeadminfire.clave==vpass){
 window.location="index2.html";
 
-alert(777);
+
 }
 
     }
