@@ -22,9 +22,9 @@ function segundoinicio() {
 }
 
   // Initialize Firebase
+  inicia();
 
-
-
+  funatraefireadmi();
 function funatraefireadmi(){
     firebase.database().ref().child(String("admin")).on("value", function(snapshot) {
   
@@ -38,10 +38,12 @@ function funatraefireadmi(){
   }
 
 
-function fbtlogin(){alert(777);
+function fbtlogin(){
+
  vinpnombre=getv("idinpnombre");
  vpass=String(getv("inppass"));
 console.log(vpass+"  aca");
+console.log(todolodeadminfire);
     for(var i in todolodeadminfire){
 if(todolodeadminfire.nombre==vinpnombre&&todolodeadminfire.clave==vpass){
 window.location="index2.html";
