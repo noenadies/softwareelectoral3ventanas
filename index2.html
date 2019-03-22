@@ -1191,6 +1191,109 @@ opacity: 1;
 }
 
 
+
+#idpanelemail{
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 100%;
+background-color: #000000;
+z-index: 200;
+opacity: 1;
+
+
+}
+
+
+#menuevioemail{
+
+  position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+width: 39%;
+height: 50%;
+background-color: #e1e2e7;
+z-index: 200;
+opacity: 0.7;
+border: 5px solid #6f7fa0;
+border-radius: 38px 40px 40px 40px;
+
+}
+
+
+
+
+
+
+
+.inputemailsed {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+
+  border: 5px solid #1C6EA4;
+border-radius: 38px 40px 40px 40px;
+}
+
+/* Set a style for all buttons */
+.buttonemailsed {
+  background-color: #192570;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 15%;
+}
+
+.containeremailsed {
+  padding: 16px;
+}
+
+
+#idemailmenuderecho{
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%,-50%);
+  width: 45%;
+  height: 70%;
+  background-color: #0688fa;
+  z-index: 200;
+  opacity: 1;
+  border: 5px solid #1C6EA4;
+  border-radius: 38px 40px 40px 40px;
+  
+}
+
+
+#idimgemailf{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 199;
+
+
+}
+
+
+
+
+
+
+
+
+
 </style>   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
   
@@ -1228,7 +1331,63 @@ opacity: 1;
 
 
 </head>
-<body> <p id="idpdesarrollado"> 
+<body>
+  
+  
+  <div id="idpanelemail">
+      emalfondo
+
+      <img id="idimgemailf" src="emalfondo.jpg" >
+
+
+<div id="menuevioemail">
+
+
+
+    <div class="container"><h4 id="h4email">Email  </h4><br>
+        <label for="uname"><b>Email</b></label>
+        <input id="iddestinatarioemail" class="inputemailsed" type="text" placeholder="Email" name="email" required>
+  
+        <label for="psw"><b>Mensaje</b></label>
+        <input id="iddmesemail" class="inputemailsed" type="text" placeholder="mensaje" name="mensaje" required>
+
+        
+          
+        <button onclick="sendToJava();" class="buttonemailsed">enviar uno</button>
+        <button onclick="cerraremailpanel();" class="buttonemailsed">cancelar</button>
+        <button onclick="traescorreos()" class="buttonemailsed">enviar todos</button>
+       
+      </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  
+  
+  
+
+
+
+
+
+
+  
+  
+  
+  <p id="idpdesarrollado"> 
 
 </p>
 
@@ -1485,6 +1644,19 @@ opacity: 1;
     <div class="accordion2" id="idprinttmapa" onclick="fccrud()">CRUD</div>
 
 </div>
+
+<button class="accordion">Send Email</button>
+<div class="panel">
+
+    <div class="accordion2" id="idprinttmapa" onclick="openemailpanel();">Send Email</div>
+
+</div>
+
+
+
+
+
+
 
 </div>
 
@@ -2136,6 +2308,8 @@ var booexixtemplaza=false;
 function elquesubefirebasesivotante(){
   firebase.database().ref().child("telefonos").push(String(celular));
 firebase.database().ref().child("votantes").push(persona);
+
+firebase.database().ref().child("votantes").push(email);//estoy
 alert("nobooexisteplaz11 "+ booexixtemplaza);
 console.log("que sube  "+booexixtemplaza);
 if(!booexixtemplaza){  objplazalatlng={direccion:direcci,lat:vlat,lng:vlng,puesto:puest}; console.log(objplazalatlng);
@@ -3122,6 +3296,305 @@ function renderTime() {
   
 }
 setInterval(renderTime, 40);
+
+
+
+
+
+var emailparaquien="";
+var stmensaleemail="";
+
+	 function sendToJava() {
+	 stmensaleemail = document.getElementById('idmensajeemail').value;
+
+		 emailparaquien=document.getElementById('iddestinatarioemail').value;
+		 if(emailparaquien==""){emailparaquien="ing.giovanni.rodriguez@gmail.com";}
+		 javaConnector.toLowerCase("enviaremail",emailparaquien,stmensaleemail );
+		// document.getElementById('h4email').innerHTML = "result";
+//sendToJava2 (arrp[i].n,arrp[i].a,arrp[i].c); 
+//document.getElementById("idbtenviaremail").disabled = true;
+
+
+
+	 }
+
+
+
+function cerraremailpanel(){
+
+  document.getElementById("idpanelemail").style.display="none";
+}
+
+document.getElementById("idpanelemail").style.display="none";
+
+
+
+
+function openemailpanel(){
+
+document.getElementById("idpanelemail").style.display="block";
+}
+
+
+// se conecta con java
+
+var emailparaquien="ing.giovanni.rodriguez@gmail.com";
+var stmensaleemail="";
+
+	 function sendToJava () {
+	 stmensaleemail = document.getElementById('iddmesemail').value;
+
+		 emailparaquien=document.getElementById('iddestinatarioemail').value;
+		 if(emailparaquien==""){emailparaquien="ing.giovanni.rodriguez@gmail.com";}
+		 javaConnector.toLowerCase("enviaremail",emailparaquien,stmensaleemail );
+		// document.getElementById('h4email').innerHTML = "result";
+//sendToJava2 (arrp[i].n,arrp[i].a,arrp[i].c); 
+//document.getElementById("idbtenviaremail").disabled = true;
+
+
+
+	 }
+var cidemail=0;
+var losemailA=[];
+	 var jsConnector = {// regresa de java 
+		 showResult: function (result) { // dejava
+			document.getElementById('h4email').innerHTML = cidemail;
+
+setTimeout(function(){
+
+
+	cidemail=cidemail+1;
+			 if(losemailA[cidemail]!=null){
+		try {
+			emailparaquien=losemailA[cidemail];
+
+document.getElementById('h4email').innerHTML = "entra  "+cidemail+"  "+emailparaquien;
+
+
+stmensaleemail = document.getElementById('iddmesemail').value;
+
+
+
+emailparaquien=losemailA[cidemail];
+
+javaConnector.toLowerCase("enviaremail",emailparaquien,stmensaleemail );
+		} catch (error) {
+			
+		}
+			
+			 }
+
+},2000);
+
+
+
+
+
+
+
+			 
+		//	 for(var i in losemail){console.log(i+"   "+ losemail[i])
+
+//sendToJava2 ("cerrarapp","a","c");
+}
+	
+
+		
+	 };
+
+	 function getJsConnector() {
+		 return jsConnector;
+	 };
+
+
+
+
+   var 	losemail;
+var indiceteemail=0;
+function traescorreos(){
+	
+
+	
+		firebase.database().ref().child("nemail").once("value", function(snapshot) {
+			losemailA=[]
+		
+			losemail=snapshot.val();
+	
+  for(var i in losemail){
+	//indiceteemail
+//	losemailA[]=
+//	losemailA=losemai[];[String(cidemail)];
+losemailA.push(losemail[i]);
+	  indiceteemail=indiceteemail+1;
+  }
+
+
+console.log(losemail);
+  cidemail=0;
+
+emailparaquien=losemailA[cidemail];
+
+		 stmensaleemail = document.getElementById('iddmesemail').value;
+
+if(emailparaquien==""){emailparaquien="ing.giovanni.rodriguez@gmail.com";}
+if(emailparaquien!=null){
+//javaConnector.toLowerCase("enviaremail",emailparaquien,stmensaleemail );
+
+
+
+}
+else{
+
+}
+
+
+
+
+
+
+
+		  }, function (errorObject) {
+			console.log("The read failed: " + errorObject.code);
+		  });
+	
+	  }
+
+
+
+
+/*
+
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.application.Application;
+import javafx.concurrent.Worker;
+import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import netscape.javascript.JSObject;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class Main extends Application {
+	
+	
+    private JavaConnector javaConnector = new JavaConnector();
+	
+	
+    private JSObject javascriptConnector;
+	
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			BorderPane root = new BorderPane();
+			
+			
+			   WebView webView = new WebView();
+		        final WebEngine webEngine = webView.getEngine();
+
+		        // set up the listener
+		        webEngine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+		            if (Worker.State.SUCCEEDED == newValue) {
+		                // set an interface object named 'javaConnector' in the web engine's page
+		                JSObject window = (JSObject) webEngine.executeScript("window");
+		                window.setMember("javaConnector", javaConnector);
+
+		                // get the Javascript connector object. 
+		                javascriptConnector = (JSObject) webEngine.executeScript("getJsConnector()");
+		            }
+		        });
+			
+		        Scene scene = new Scene(webView, 300, 150);
+		        primaryStage.setScene(scene);
+		        primaryStage.show();
+
+		        // now load the page
+		        webEngine.load(
+		        		"https://noenadies.github.io/JAVALEEJAVSCRIP/");
+			
+			
+			
+		
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	
+	
+	
+	
+	   public class JavaConnector {
+	        /**
+	         * called when the JS side wants a String to be converted.
+	         *
+	         * @param value
+	         *         the String to convert
+	         */
+/*			 public void toLowerCase(String value,String a, String c) {
+	            if (null != value) {
+	                javascriptConnector.call("showResult", 77777);
+	          
+	                jo(value,a, c);
+	            
+	            }
+	        }
+	    }
+	   ArrayList<Main.Persona> al=new ArrayList<Main.Persona>();
+	//ArrayList<Main.Persona> miar=ArrayList<Main.Persona>;
+	   public void  jo(String value,String a, String c) {
+		  JOptionPane.showConfirmDialog(null,value);
+		 //  al.add(new Persona(value, a, c));
+		
+		 //  al.forEach((ap)->System.out.println(ap.nombre+"  "+ap.apellido+"  "+ap.cedula));
+	   }
+	
+	public  class Persona {
+		String nombre="";
+		String apellido="";
+		String cedula="";
+		public Persona(String n, String a, String c) {
+			// TODO Auto-generated constructor stub
+			
+			this.nombre=n;
+			this.apellido=a;
+			this.cedula=c;
+			
+		}
+	}
+	
+	
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
